@@ -17,11 +17,11 @@
                         <group>
 
                             <group>
-                                <field name="date_in" string="Select Date In" placeholder="Entry date"/>
+                                <field name="date_in" string="Select Entry In" placeholder="Entry date"/>
                                 <field name="hatch_date" string="Select Hatch Date" placeholder="Hatch date"/>
                                 <field name="initial_stock" string="Enter Initial Stock" placeholder="Bird count"/>
                                 <field name="house_number" string="Enter House No" placeholder="House no."/>
-                                <field name="laying_start_date" string="Select Start Date" placeholder="Select start date"/>
+                                <field name="laying_start_date" string="Select Start Date" placeholder="Select Laying start date"/>
                                 <!-- <field name="transfer_ref_id" string="Transfer Ref" placeholder="Enter transfer ID"/> -->
                                 <!-- <field name="feed_today" string="Feed Today (Kgs)" placeholder="Enter feed today (kg)"/> -->
                                 <!-- <field name="eggs_today" string="Laid Today" placeholder="Enter eggs today"/> -->
@@ -30,17 +30,17 @@
                             <!-- Separator to add spacing -->
                             <!--                            <separator string=" " colspan="1"/>-->
 
-                            <group style=" background-color: #D2D2FF;">
+                            <group style=" background-color: #efefff; padding: 10px; border-radius: 2px;">
                                 <group>
                                     <field name="age" string="Age" placeholder="Auto-calculated"/>
-                                <field name="stock" string="Stock" placeholder="Current bird count"/>
-                                <field name="curled" string="Curled" placeholder="Auto-calculated"/>
-                                <field name="average_eggs_daily" string="Avg Eggs Daily" placeholder="Avg eggs per day"/>
+                                    <field name="stock" string="Stock" placeholder="Current bird count"/>
+                                    <field name="curled" string="Curled" placeholder="Auto-calculated"/>
+                                    <field name="average_eggs_daily" string="Avg Eggs Daily" placeholder="Avg eggs per day"/>
                                 </group>
                                 <group>
-                                     <field name="total_eggs" string="Total Eggs" placeholder="Total eggs collected"/>
-                                <field name="average_feed_daily" string="Avg Feed Daily (Kgs)" placeholder="Avg feed per day (kg)"/>
-                                <field name="total_feed" string="Total Feed (Kgs)" placeholder="Total feed (kg)"/>
+                                    <field name="total_eggs" string="Total Eggs" placeholder="Total eggs collected"/>
+                                    <field name="average_feed_daily" string="Avg Feed Daily (Kgs)" placeholder="Avg feed per day (kg)"/>
+                                    <field name="total_feed" string="Total Feed (Kgs)" placeholder="Total feed (kg)"/>
                                 </group>
 
 
@@ -72,6 +72,7 @@
                 </form>
             </field>
         </record>
+
         <!--    tree view     -->
         <record id="chicken_batch_tree_view" model="ir.ui.view">
             <field name="name">Chicken Batchs</field>
@@ -79,14 +80,15 @@
             <field name="arch" type="xml">
                 <tree string="Chicken Batchs">
                     <field name="name" string="Batch Number"/>
-                    <field name="stock" string="Stock"/>
+                    <field name="date_in" string="Entry Date"/>
+                    <field name="stock" string="Current Stock"/>
                     <field name="age" string="Age"/>
                     <!--            todo implement -->
                     <!--          <field name="eggs_today" string="Laid Today" />-->
                     <field name="average_eggs_daily" string="Avg Eggs Daily"/>
                     <field name="total_eggs" string="Total Eggs"/>
-                    <field name="laying_start_date" string="Laying Start Date"/>
-                    <field name="date_in" string="Date In"/>
+<!--                    <field name="laying_start_date" string="Laying Start Date"/>-->
+
                     <!--          <field name="transfer_ref_id" string="Transfer Ref"/>-->
                 </tree>
             </field>

@@ -38,7 +38,7 @@ class ChickenFeeding(models.Model):
             'location_id': 8,
             'location_dest_id' : 16,
             'note' : record.feeding_ref,
-            'move_ids': [(0, 0, {
+            'move_lines': [(0, 0, {
             'name': 'Chicken' + record.feeding_ref,
             'product_uom_qty': record.quantity,
             'description_picking': record.feeding_ref,

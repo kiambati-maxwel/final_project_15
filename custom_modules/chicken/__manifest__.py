@@ -13,4 +13,9 @@
         'views/chicken_vaccination_views.xml',
         'views/chicken_batch_menus.xml',
     ],
+'assets': {
+        'web.assets_backend': [
+            'chicken/static/src/scss/custom_tree_styles.scss'
+        ]
+}
 }

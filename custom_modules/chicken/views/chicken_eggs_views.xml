@@ -7,11 +7,11 @@
       <field name="name">Eggs</field>
       <field name="model">chicken.eggs</field>
       <field name="arch" type="xml">
-            <tree string="Eggs Entry" editable="bottom">
+            <tree string="Eggs Entry" editable="bottom" class="o_list_view ">
                   <field name="eggs_ref" string="Eggs Entry Ref"/>
+                 <field name="quantity" string="Quantity"/>
                  <field name="date" string="Date"/>
-                  <field name="quantity" string="Quantity"/>
-                   <field name="batch_id" string="Batch"/>
+                   <field name="batch_id" string="Batch" modifiers="{'tree_invisible': True}"/>
                   <field name="comment" string="Comment"/>
             </tree>
       </field>
