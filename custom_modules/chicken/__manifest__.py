@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "chicken",
+    'name': "Poultry Farm",
     'description': "Long description of module's purpose",
     'depends': ['base', 'stock'],
     'data': [

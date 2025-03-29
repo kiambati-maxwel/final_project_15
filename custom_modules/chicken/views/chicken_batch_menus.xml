@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-        <menuitem id="chicken_farm_root" name="Chicken">
+        <menuitem id="chicken_farm_root" name="Farm Management">
             <menuitem id="chicken_batch_menu" name="Batchs">
                 <menuitem id="chicken_batch_model_menu_action" action="chicken_batch_action"/>
             </menuitem>

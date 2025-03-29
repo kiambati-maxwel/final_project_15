@@ -1,92 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    <record id="chicken_batch_form_view" model="ir.ui.view">
-      <field name="name">Chicken Batchs</field>
-      <field name="model">chicken.batch</field>
-      <field name="arch" type="xml">
-        <form string="Chicken Batchs">
-          <sheet>
+    <data>
+        <record id="chicken_batch_form_view" model="ir.ui.view">
+            <field name="name">Chicken Batchs</field>
+            <field name="model">chicken.batch</field>
+            <field name="arch" type="xml">
+                <form string="Chicken Batchs">
+                    <sheet>
 
-            <div class="oe_title">
-               <h1 class="d-flex">
-                  <field name="name" string=""/>
-               </h1>
-            </div> <br/>
+                        <div class="oe_title">
+                            <h1 class="d-flex">
+                                <field name="name" string=""/>
+                            </h1>
+                        </div> <br/>
 
-            <group>
-               <group>
-              <field name="stock" string="Stock"/>
-              <field name="curled" string="Curled"/>
-              <field name="initial_stock" string="Initial Stock"/>
-              <field name="age" string="Age"/>
-              <field name="hatch_date" string="Hatch Date"/>
-              <field name="house_number" string="House No"/>
-                 <field name="laying_start_date" string="Laying Start Date"/>
-<!--              <field name="transfer_ref_id" string="Transfer Ref"/>-->
-            </group>
-            <group>
-<!--              <field name="eggs_today" string="Laid Today"/>-->
-                <field name="date_in" string="Date In"/>
-              <field name="average_eggs_daily" string="Avg Eggs Daily"/>
-              <field name="total_eggs" string="Total Eggs"/>
-<!--              <field name="feed_today" string="Feed Today (Kgs)"/>-->
-              <field name="average_feed_daily" string="Avg Feed Daily (Kgs)"/>
-              <field name="total_feed" string="Total Feed (Kgs)"/>
-            </group>
-            </group>
+                        <group>
 
-            <notebook>
-               <page string="Eggs Entries">
-                <field name="eggs_ids" string="Eggs Entries"/>
-              </page>
-              <page string="Culling">
-                <field name="cull_ids" string="Culls"/>
-              </page>
-              <page string="Feeding">
-                <field name="feed_ids" string="Feeding Entries"/>
-              </page>
-              <page string="Vaccination">
-                <field name="vaccination_ids" string="Vaccination Entries"/>
-              </page>
+                            <group>
+                                <field name="date_in" string="Select Date In" placeholder="Entry date"/>
+                                <field name="hatch_date" string="Select Hatch Date" placeholder="Hatch date"/>
+                                <field name="initial_stock" string="Enter Initial Stock" placeholder="Bird count"/>
+                                <field name="house_number" string="Enter House No" placeholder="House no."/>
+                                <field name="laying_start_date" string="Select Start Date" placeholder="Select start date"/>
+                                <!-- <field name="transfer_ref_id" string="Transfer Ref" placeholder="Enter transfer ID"/> -->
+                                <!-- <field name="feed_today" string="Feed Today (Kgs)" placeholder="Enter feed today (kg)"/> -->
+                                <!-- <field name="eggs_today" string="Laid Today" placeholder="Enter eggs today"/> -->
+                            </group>
 
-              <page string="More info">
-<!--                todo: make this field accomodate pictures and more  -->
-                <field name="description" string="More Details"/>
-              </page>
+                            <!-- Separator to add spacing -->
+                            <!--                            <separator string=" " colspan="1"/>-->
 
-            </notebook>
+                            <group style=" background-color: #D2D2FF;">
+                                <group>
+                                    <field name="age" string="Age" placeholder="Auto-calculated"/>
+                                <field name="stock" string="Stock" placeholder="Current bird count"/>
+                                <field name="curled" string="Curled" placeholder="Auto-calculated"/>
+                                <field name="average_eggs_daily" string="Avg Eggs Daily" placeholder="Avg eggs per day"/>
+                                </group>
+                                <group>
+                                     <field name="total_eggs" string="Total Eggs" placeholder="Total eggs collected"/>
+                                <field name="average_feed_daily" string="Avg Feed Daily (Kgs)" placeholder="Avg feed per day (kg)"/>
+                                <field name="total_feed" string="Total Feed (Kgs)" placeholder="Total feed (kg)"/>
+                                </group>
 
-          </sheet>
-        </form>
-      </field>
-    </record>
-    <!--    tree view     -->
-    <record id="chicken_batch_tree_view" model="ir.ui.view">
-      <field name="name">Chicken Batchs</field>
-      <field name="model">chicken.batch</field>
-      <field name="arch" type="xml">
-        <tree string="Chicken Batchs">
-          <field name="name" string="Batch Number"/>
-          <field name="stock" string="Stock"/>
-          <field name="age" string="Age"/>
-<!--            todo implement -->
-<!--          <field name="eggs_today" string="Laid Today" />-->
-          <field name="average_eggs_daily" string="Avg Eggs Daily"/>
-          <field name="total_eggs" string="Total Eggs"/>
-          <field name="laying_start_date" string="Laying Start Date"/>
-             <field name="date_in" string="Date In"/>
-<!--          <field name="transfer_ref_id" string="Transfer Ref"/>-->
-        </tree>
-      </field>
-    </record>
 
-    <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="chicken_batch_action">
-      <field name="name">Batchs</field>
-      <field name="res_model">chicken.batch</field>
-      <field name="view_mode">tree,form</field>
-    </record>
+                            </group>
+                        </group>
 
-  </data>
+                        <notebook>
+                            <page string="Eggs Entries">
+                                <field name="eggs_ids" string="Eggs Entries"/>
+                            </page>
+                            <page string="Culling">
+                                <field name="cull_ids" string="Culls"/>
+                            </page>
+                            <page string="Feeding">
+                                <field name="feed_ids" string="Feeding Entries"/>
+                            </page>
+                            <page string="Vaccination">
+                                <field name="vaccination_ids" string="Vaccination Entries"/>
+                            </page>
+
+                            <page string="More info">
+                                <!--                todo: make this field accomodate pictures and more  -->
+                                <field name="description" string="More Details"/>
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--    tree view     -->
+        <record id="chicken_batch_tree_view" model="ir.ui.view">
+            <field name="name">Chicken Batchs</field>
+            <field name="model">chicken.batch</field>
+            <field name="arch" type="xml">
+                <tree string="Chicken Batchs">
+                    <field name="name" string="Batch Number"/>
+                    <field name="stock" string="Stock"/>
+                    <field name="age" string="Age"/>
+                    <!--            todo implement -->
+                    <!--          <field name="eggs_today" string="Laid Today" />-->
+                    <field name="average_eggs_daily" string="Avg Eggs Daily"/>
+                    <field name="total_eggs" string="Total Eggs"/>
+                    <field name="laying_start_date" string="Laying Start Date"/>
+                    <field name="date_in" string="Date In"/>
+                    <!--          <field name="transfer_ref_id" string="Transfer Ref"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="chicken_batch_action">
+            <field name="name">Batchs</field>
+            <field name="res_model">chicken.batch</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
 </odoo>
