@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+          <!--    tree view     -->
+    <record id="chicken_cull_eggs_view" model="ir.ui.view">
+      <field name="name">Eggs</field>
+      <field name="model">chicken.eggs</field>
+      <field name="arch" type="xml">
+            <tree string="Eggs Entry" editable="bottom">
+                  <field name="eggs_ref" string="Eggs Entry Ref"/>
+                 <field name="date" string="Date"/>
+                  <field name="quantity" string="Quantity"/>
+                   <field name="batch_id" string="Batch"/>
+                  <field name="comment" string="Comment"/>
+            </tree>
+      </field>
+
+    </record>
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="chicken_eggs_action">
+          <field name="name">Eggs</field>
+          <field name="res_model">chicken.eggs</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

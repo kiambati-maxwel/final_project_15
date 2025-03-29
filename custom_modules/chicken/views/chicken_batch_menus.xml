@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="chicken_farm_root" name="Chicken">
+            <menuitem id="chicken_batch_menu" name="Batchs">
+                <menuitem id="chicken_batch_model_menu_action" action="chicken_batch_action"/>
+            </menuitem>
+             <menuitem id="chicken_cull_menu" name="Culling">
+                <menuitem id="chicken_cull_model_menu_action" action="chicken_cull_action"/>
+            </menuitem>
+            <menuitem id="chicken_eggs_menu" name="Eggs">
+                <menuitem id="chicken_eggs_model_menu_action" action="chicken_eggs_action"/>
+            </menuitem>
+             <menuitem id="chicken_feed_menu" name="Feeding">
+                <menuitem id="chicken_feed_model_menu_action" action="chicken_feed_action"/>
+            </menuitem>
+             <menuitem id="chicken_vaccination_menu" name="Vaccination">
+                <menuitem id="chicken_vaccination_model_menu_action" action="chicken_vaccination_action"/>
+            </menuitem>
+        </menuitem>
+    </data>
+</odoo>

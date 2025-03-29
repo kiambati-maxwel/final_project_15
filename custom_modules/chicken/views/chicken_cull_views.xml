@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+          <!--    tree view     -->
+    <record id="chicken_cull_tree_view" model="ir.ui.view">
+      <field name="name">Culls</field>
+      <field name="model">chicken.cull</field>
+      <field name="arch" type="xml">
+            <tree string="Chicken Culls" editable="bottom">
+                  <field name="cull_ref" string="Cul Reference"/>
+                  <field name="number" string="Number of Chicken"/>
+
+<!--                  <field name="transfer_id" string="Transfer Ref"/>-->
+                  <field name="cull_date" string="Date"/>
+                <field name="batch_id" string="Batch"/>
+                  <field name="cull_reason" string="Reason" />
+                  <field name="cull_description" string="Description"/>
+            </tree>
+      </field>
+
+    </record>
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="chicken_cull_action">
+          <field name="name">Cull</field>
+          <field name="res_model">chicken.cull</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

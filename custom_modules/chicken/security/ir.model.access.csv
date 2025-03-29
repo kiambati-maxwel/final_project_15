@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_chicken_batch,chicken.batch,model_chicken_batch,base.group_user,1,1,1,1
+access_chicken_cull,chicken.cull,model_chicken_cull,base.group_user,1,1,1,1
+access_chicken_eggs,chicken.eggs,model_chicken_eggs,base.group_user,1,1,1,1
+access_chicken_feed,chicken.feed,model_chicken_feed,base.group_user,1,1,1,1
+access_chicken_vaccination,chicken.vaccination,model_chicken_vaccination,base.group_user,1,1,1,1

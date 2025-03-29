@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+          <!--    tree view     -->
+    <record id="chicken_vaccination_view" model="ir.ui.view">
+      <field name="name">Vaccinations</field>
+      <field name="model">chicken.vaccination</field>
+      <field name="arch" type="xml">
+            <tree string="Vaccination Entries" editable="bottom">
+                  <field name="vaccination_ref" string="Ref"/>
+                  <field name="product_id" string="Vaccine"/>
+                  <field name="quantity" string="Quantity"/>
+                  <field name="partner_id" string="Responsible" />
+                  <field name="batch_id" string="Batch"/>
+                  <field name="comment" string="Comment"/>
+            </tree>
+      </field>
+
+    </record>
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="chicken_vaccination_action">
+          <field name="name">Vaccination</field>
+          <field name="res_model">chicken.vaccination</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
