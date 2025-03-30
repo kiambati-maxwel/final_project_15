@@ -19,7 +19,7 @@
                 <menuitem id="chicken_vaccination_model_menu_action" action="chicken_vaccination_action"/>
             </menuitem>
 
-            <menuitem id="chicken_report_menu" name="Reports">
+            <menuitem id="chicken_report_menu" name=" Batch Reports">
                 <menuitem id="chicken_report_stock_count_pivot" name="Stock Count"  action="action_chicken_stock_count_pivot"/>
                 <menuitem id="chicken_report_batch_stock_graph" name="Stock Analysis"  action="action_chicken_stock_batch_graph"/>
                 <menuitem id="chicken_report_egg_production" name="Egg Production Report"  action="action_chicken_batch_graph"/>

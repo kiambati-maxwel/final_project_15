@@ -112,6 +112,15 @@
                     <field name="stock"/>
                     <field name="age"/>
                     <field name="total_eggs"/>
+
+                    <!-- Group By Options -->
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_house" string="House Number" context="{'group_by': 'house_number'}"/>
+                        <filter name="group_by_hatch_date" string="Hatch Date" context="{'group_by': 'hatch_date'}"/>
+                        <filter name="group_by_laying_start" string="Laying Start Date" context="{'group_by': 'laying_start_date'}"/>
+                        <filter name="group_by_stock" string="Stock" context="{'group_by': 'stock'}"/>
+                        <filter name="group_by_age" string="Age" context="{'group_by': 'age'}"/>
+                    </group>
                 </search>
             </field>
         </record>
@@ -141,7 +150,7 @@
             </field>
         </record>
 
-         <!-- Batch Stock Graph -->
+        <!-- Batch Stock Graph -->
         <record id="view_chicken_batch_stock_graph" model="ir.ui.view">
             <field name="name">chicken.batch.graph_age</field>
             <field name="model">chicken.batch</field>
@@ -177,7 +186,7 @@
             </field>
         </record>
 
-         <!-- Stock Count Pivot  -->
+        <!-- Stock Count Pivot  -->
         <record id="view_chicken_stock_count_pivot" model="ir.ui.view">
             <field name="name">chicken.feed.pivot</field>
             <field name="model">chicken.batch</field>
@@ -218,7 +227,7 @@
             <field name="view_mode">pivot</field>
         </record>
 
-          <!-- Action for stock analysis -->
+        <!-- Action for stock analysis -->
         <record id="action_chicken_stock_batch_graph" model="ir.actions.act_window">
             <field name="name">Stock Batch Report</field>
             <field name="res_model">chicken.batch</field>
@@ -226,7 +235,7 @@
             <field name="view_id" ref="view_chicken_batch_stock_graph"/>  <!-- Explicitly set the view -->
         </record>
 
-            <!-- Action for count -->
+        <!-- Action for count -->
         <record id="action_chicken_stock_count_pivot" model="ir.actions.act_window">
             <field name="name">Stock Count Report</field>
             <field name="res_model">chicken.batch</field>
