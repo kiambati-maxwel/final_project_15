@@ -97,8 +97,21 @@
             <field name="model">chicken.batch</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="name" string="Batch Number"/>
-                    <field name="date_in" string="Entry Date"/>
+                    <!-- Predefined Filters -->
+                    <filter name="older_batches" string="Older Batches &gt; 150 Days" domain="[('age', '&gt;', 150)]"/>
+                    <filter name="low_stock" string="Low Stock &lt; 50 Birds" domain="[('stock', '&lt;', 50)]"/>
+                    <filter name="high_cull_rate" string="High Cull Rate &gt; 100 Curled Birds" domain="[('curled', '&gt;', 100)]"/>
+                    <filter name="high_egg_production" string="High Egg Production Avg 50" domain="[('average_eggs_daily', '&gt;', 50)]"/>
+                    <filter name="not_laying" string="Not Laying Yet &gt; Laying Start Date Not activated" domain="[('laying_start_date', '=', False)]"/>
+<!--                    <filter name="not_vaccinated" string="Not Vaccinated" domain="[('vaccination_ids', '=', False)]"/>-->
+
+                    <!-- Searchable Fields -->
+                    <field name="name"/>
+                    <field name="hatch_date"/>
+                    <field name="house_number"/>
+                    <field name="stock"/>
+                    <field name="age"/>
+                    <field name="total_eggs"/>
                 </search>
             </field>
         </record>
@@ -110,11 +123,11 @@
             <field name="model">chicken.batch</field>
             <field name="arch" type="xml">
                 <graph string="Batch Analysis" sample="1">
-<!--                    <field name="stage_id"/>-->
-<!--                    <field name="date_deadline" interval="month"/>-->
+                    <!--                    <field name="stage_id"/>-->
+                    <!--                    <field name="date_deadline" interval="month"/>-->
                     <field name="name"/>
                     <field name="stock" type="measure"/>
-<!--                    <field name="color" invisible="1"/>-->
+                    <!--                    <field name="color" invisible="1"/>-->
                 </graph>
             </field>
         </record>
