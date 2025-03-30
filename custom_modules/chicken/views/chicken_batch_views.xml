@@ -112,8 +112,8 @@
                 <graph string="Batch Analysis" sample="1">
 <!--                    <field name="stage_id"/>-->
 <!--                    <field name="date_deadline" interval="month"/>-->
-                    <field name="stock"/>
-<!--                    <field name="name" type="measure"/>-->
+                    <field name="name"/>
+                    <field name="stock" type="measure"/>
 <!--                    <field name="color" invisible="1"/>-->
                 </graph>
             </field>
