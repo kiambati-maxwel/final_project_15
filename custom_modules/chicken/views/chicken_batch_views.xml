@@ -70,7 +70,54 @@
             </field>
         </record>
 
-
+        <!--        Kanban View     -->
+        <record id="chicken_batch_kanban_view" model="ir.ui.view">
+            <field name="name">chicken.batch.kanban</field>
+            <field name="model">chicken.batch</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_view">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card shadow-sm p-3 mb-3 rounded oe_kanban_global_click"
+                                 style="border-left: 5px solid #4CAF50; background: #f9f9f9;"
+                                 t-attf-data-id="{{ record.id }}">
+                                <div class="o_kanban_details d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <strong class="d-block text-primary" style="font-size: 1.2em;">
+                                            <field name="name"/>
+                                        </strong>
+                                        <div class="o_kanban_tags mt-1">
+                                            <t t-if="record.stock.raw_value &lt; 50">
+                                                <span class="badge badge-danger">Low Stock</span>
+                                            </t>
+                                            <t t-if="record.age.raw_value &gt; 150">
+                                                <span class="badge badge-warning">Older Batch</span>
+                                            </t>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="text-muted">🐥 Stock: <strong><field name="stock"/></strong></span>
+                                        </div>
+                                        <div>
+                                            <span class="text-muted">📅 Age: <strong><field name="age"/> days</strong></span>
+                                        </div>
+                                        <div>
+                                            <span class="text-muted">🥚 Avg Eggs Daily: <strong><field name="average_eggs_daily"/></strong></span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                     t-att-style="'width: ' + record.average_eggs_daily.raw_value + '%;'"
+                                                     aria-valuenow="record.average_eggs_daily.raw_value" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
 
         <!--   ###### ######  tree view  ############################   -->
         <record id="chicken_batch_tree_view" model="ir.ui.view">
@@ -198,12 +245,17 @@
             </field>
         </record>
 
-        <!-- actions opening views on models -->
-        <record model="ir.actions.act_window" id="chicken_batch_action">
-            <field name="name">Batchs</field>
+        <!-- Update Action to set Kanban as default view -->
+        <record id="chicken_batch_action" model="ir.actions.act_window">
+            <field name="name">Batches</field>
             <field name="res_model">chicken.batch</field>
-            <field name="view_mode">tree,form,graph</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">No batches found! Click to create a new batch.</p>
+            </field>
         </record>
+
+
         <!-- Action for Egg Production Report -->
         <record id="action_chicken_batch_graph" model="ir.actions.act_window">
             <field name="name">Egg Production Report</field>
