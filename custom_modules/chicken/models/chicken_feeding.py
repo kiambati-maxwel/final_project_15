@@ -36,7 +36,7 @@ class ChickenFeeding(models.Model):
             'origin': record.feeding_ref,
             'picking_type_id': 5,
             'location_id': 8,
-            'location_dest_id' : 16,
+            'location_dest_id' : 44,
             'note' : record.feeding_ref,
             'move_lines': [(0, 0, {
             'name': 'Chicken' + record.feeding_ref,
@@ -45,7 +45,7 @@ class ChickenFeeding(models.Model):
             'product_id': record.product_id.id,
             "product_uom": product_uom,
             "location_id": 8,
-            "location_dest_id": 16,
+            "location_dest_id": 44,
         })]
         })
 

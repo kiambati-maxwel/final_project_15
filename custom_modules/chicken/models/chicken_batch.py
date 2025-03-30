@@ -12,7 +12,7 @@ class ChickenBatch(models.Model):
     name = fields.Char('Reference', copy=False, readonly=True, default=lambda x: _('New'))
     hatch_date = fields.Date(required=True)
     house_number = fields.Integer()
-    curled = fields.Integer(default=0, compute = '_compute_culled')
+    curled = fields.Integer(default=0, compute = '_compute_culled' , store=True)
     initial_stock = fields.Integer(default=0)
     laying_start_date = fields.Date()
     description = fields.Text()
@@ -32,12 +32,12 @@ class ChickenBatch(models.Model):
 
 
     # ===== Computed Fields ==============
-    stock = fields.Integer(compute='_compute_stock')
-    age = fields.Integer(compute='_compute_age')
-    total_eggs = fields.Integer(compute = '_compute_total_eggs', default=0)
-    average_eggs_daily = fields.Integer(compute='_compute_average_eggs_daily', default=0)
-    total_feed = fields.Float(compute='_compute_total_feed')
-    average_feed_daily = fields.Float(compute='_compute_average_feed_daily')
+    stock = fields.Integer(compute='_compute_stock', store=True)
+    age = fields.Integer(compute='_compute_age' , store=True)
+    total_eggs = fields.Integer(compute = '_compute_total_eggs', default=0 , store=True)
+    average_eggs_daily = fields.Integer(compute='_compute_average_eggs_daily', default=0 , store=True)
+    total_feed = fields.Float(compute='_compute_total_feed' , store=True)
+    average_feed_daily = fields.Float(compute='_compute_average_feed_daily' , store=True)
     # todo later
     # eggs_today = fields.Integer(compute='_compute_eggs_today', default=0)
     # feed_today=fields.Float()
