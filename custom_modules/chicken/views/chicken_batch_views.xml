@@ -5,68 +5,78 @@
             <field name="name">Chicken Batchs</field>
             <field name="model">chicken.batch</field>
             <field name="arch" type="xml">
-                <form string="Chicken Batchs">
+                <form string="🐔 Chicken Batch Management">
                     <sheet>
-
-                        <div class="oe_title">
-                            <h1 class="d-flex">
-                                <field name="name" string=""/>
+                        <div class="oe_title" style="text-align:center;">
+                            <h1 class="d-flex" style="font-size: 1.8em; color: #4CAF50;">
+                                <field name="name" string="Batch Name"/>
                             </h1>
-                        </div> <br/>
-
-                        <group>
-
-                            <group>
-                                <field name="date_in" string="Select Entry In" placeholder="Entry date"/>
-                                <field name="hatch_date" string="Select Hatch Date" placeholder="Hatch date"/>
-                                <field name="initial_stock" string="Enter Initial Stock" placeholder="Bird count"/>
-                                <field name="house_number" string="Enter House No" placeholder="House no."/>
-                                <field name="laying_start_date" string="Select Start Date" placeholder="Select Laying start date"/>
-                                <!-- <field name="transfer_ref_id" string="Transfer Ref" placeholder="Enter transfer ID"/> -->
-                                <!-- <field name="feed_today" string="Feed Today (Kgs)" placeholder="Enter feed today (kg)"/> -->
-                                <!-- <field name="eggs_today" string="Laid Today" placeholder="Enter eggs today"/> -->
-                            </group>
-
-                            <group style=" background-color: #efefff; padding: 10px; border-radius: 2px;">
-                                <group>
-                                    <field name="age" string="Age" placeholder="Auto-calculated"/>
-                                    <field name="stock" string="Stock" placeholder="Current bird count"/>
-                                    <field name="curled" string="Curled" placeholder="Auto-calculated"/>
-                                    <field name="average_eggs_daily" string="Avg Eggs Daily" placeholder="Avg eggs per day"/>
-                                </group>
-                                <group>
-                                    <field name="total_eggs" string="Total Eggs" placeholder="Total eggs collected"/>
-                                    <field name="average_feed_daily" string="Avg Feed Daily (Kgs)" placeholder="Avg feed per day (kg)"/>
-                                    <field name="total_feed" string="Total Feed (Kgs)" placeholder="Total feed (kg)"/>
-                                </group>
-
-
-                            </group>
-                        </group>
+                        </div>
+                        <br/>
 
                         <notebook>
-                            <page string="Eggs Entries">
-                                <field name="eggs_ids" string="Eggs Entries"/>
-                            </page>
-                            <page string="Culling">
-                                <field name="cull_ids" string="Culls"/>
-                            </page>
-                            <page string="Feeding">
-                                <field name="feed_ids" string="Feeding Entries"/>
-                            </page>
-                            <page string="Vaccination">
-                                <field name="vaccination_ids" string="Vaccination Entries"/>
-                            </page>
-
-                            <page string="More info">
-                                <!--                todo: make this field accomodate pictures and more  -->
-                                <field name="description" string="More Details"/>
+                            <!-- Batch Overview Tab -->
+                            <page string="📋 Batch Overview">
+                                <group>
+                                    <group>
+                                        <field name="date_in" string="📅 Entry Date" placeholder="Select entry date"/>
+                                        <field name="hatch_date" string="🥚 Hatch Date" placeholder="Select hatch date"/>
+                                        <field name="initial_stock" string="🐥 Initial Stock" placeholder="Enter bird count"/>
+                                        <field name="house_number" string="🏠 House Number" placeholder="Enter house number"/>
+                                        <field name="laying_start_date" string="🛑 Laying Start Date" placeholder="Select laying start date"/>
+                                    </group>
+                                </group>
                             </page>
 
+                            <!-- Statistics & Health Tab -->
+                            <page string="📊 Batch Statistics &amp; Health">
+                                <group>
+                                    <group style="background: #e3f2fd; padding: 15px; border-radius: 10px;">
+                                        <h3 style="color: #1976D2;">🐤 Stock &amp; Age</h3>
+                                        <field name="age" string="📆 Age (Days)" placeholder="Auto-calculated"/>
+                                        <field name="stock" string="🐔 Current Stock" placeholder="Bird count"/>
+                                        <field name="curled" string="💀 Culled Birds" placeholder="Auto-calculated"/>
+                                    </group>
+                                    <group style="background: #ffebee; padding: 15px; border-radius: 10px;">
+                                        <h3 style="color: #D32F2F;">🥚 Egg Production</h3>
+                                        <field name="average_eggs_daily" string="🥚 Avg Eggs Daily"/>
+                                        <field name="total_eggs" string="🥚 Total Eggs Collected"/>
+                                    </group>
+                                    <group style="background: #e8f5e9; padding: 15px; border-radius: 10px;">
+                                        <h3 style="color: #388E3C;">🌾 Feed Consumption</h3>
+                                        <field name="average_feed_daily" string="🌿 Avg Feed Daily (Kgs)"/>
+                                        <field name="total_feed" string="🌿 Total Feed Used (Kgs)"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <!-- Operations Tab -->
+                            <page string="⚙️ Operations">
+                                <notebook>
+                                    <page string="🥚 Egg Collection">
+                                        <field name="eggs_ids" string="Egg Entries"/>
+                                    </page>
+                                    <page string="💀 Culling">
+                                        <field name="cull_ids" string="Cull Records"/>
+                                    </page>
+                                    <page string="🌿 Feeding">
+                                        <field name="feed_ids" string="Feed Records"/>
+                                    </page>
+                                    <page string="💉 Vaccination">
+                                        <field name="vaccination_ids" string="Vaccination Records"/>
+                                    </page>
+                                </notebook>
+                            </page>
+
+                            <!-- Additional Details -->
+                            <page string="ℹ️ More Info">
+                                <field name="description" string="Additional Details"/>
+                            </page>
                         </notebook>
-
                     </sheet>
                 </form>
+
+
             </field>
         </record>
 
@@ -294,8 +304,6 @@
             <field name="view_mode">pivot</field>
             <field name="view_id" ref="view_chicken_stock_count_pivot"/>  <!-- Explicitly set the view -->
         </record>
-
-
 
     </data>
 </odoo>

@@ -27,10 +27,6 @@
                 <menuitem id="chicken_report_feed_consumption" name="Feed Consumption Report" action="action_chicken_feed_pivot"/>
             </menuitem>
 
-            <!-- Submenus -->
-            <!--            <menuitem id="chicken_report_egg_production" name="Egg Production Report" parent="chicken_report_menu" action="action_chicken_batch_graph"/>-->
-            <!--            <menuitem id="chicken_report_culling" name="Culling Report" parent="chicken_report_menu" action="action_chicken_cull_graph"/>-->
-            <!--            <menuitem id="chicken_report_feed_consumption" name="Feed Consumption Report" parent="chicken_report_menu" action="action_chicken_feed_pivot"/>-->
         </menuitem>
     </data>
 </odoo>
