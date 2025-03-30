@@ -103,7 +103,7 @@
                     <filter name="high_cull_rate" string="High Cull Rate &gt; 100 Curled Birds" domain="[('curled', '&gt;', 100)]"/>
                     <filter name="high_egg_production" string="High Egg Production Avg 50" domain="[('average_eggs_daily', '&gt;', 50)]"/>
                     <filter name="not_laying" string="Not Laying Yet &gt; Laying Start Date Not activated" domain="[('laying_start_date', '=', False)]"/>
-<!--                    <filter name="not_vaccinated" string="Not Vaccinated" domain="[('vaccination_ids', '=', False)]"/>-->
+                    <!--                    <filter name="not_vaccinated" string="Not Vaccinated" domain="[('vaccination_ids', '=', False)]"/>-->
 
                     <!-- Searchable Fields -->
                     <field name="name"/>
@@ -119,16 +119,73 @@
         <!--        Graph view -->
         <!-- Opportunities by user and team Graph View -->
         <record id="chicken_batch_graph_view"  model="ir.ui.view">
-            <field name="name">chicken.batch.graph</field>
+            <field name="name">chicken.batch.graph.stock</field>
             <field name="model">chicken.batch</field>
             <field name="arch" type="xml">
                 <graph string="Batch Analysis" sample="1">
-                    <!--                    <field name="stage_id"/>-->
-                    <!--                    <field name="date_deadline" interval="month"/>-->
                     <field name="name"/>
                     <field name="stock" type="measure"/>
-                    <!--                    <field name="color" invisible="1"/>-->
                 </graph>
+            </field>
+        </record>
+
+        <!-- Egg Production Graph -->
+        <record id="view_chicken_batch_graph" model="ir.ui.view">
+            <field name="name">chicken.batch.graph_age</field>
+            <field name="model">chicken.batch</field>
+            <field name="arch" type="xml">
+                <graph string="Egg Production" type="bar">
+                    <field name="age" type="row"/>
+                    <field name="total_eggs" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+         <!-- Batch Stock Graph -->
+        <record id="view_chicken_batch_stock_graph" model="ir.ui.view">
+            <field name="name">chicken.batch.graph_age</field>
+            <field name="model">chicken.batch</field>
+            <field name="arch" type="xml">
+                <graph string="Egg Production" type="bar">
+                    <field name="name" type="row"/>
+                    <field name="stock" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Culling Graph -->
+        <record id="view_chicken_cull_graph" model="ir.ui.view">
+            <field name="name">chicken.cull.graph</field>
+            <field name="model">chicken.batch</field>
+            <field name="arch" type="xml">
+                <graph string="Cull Rate" type="pie">
+                    <field name="name" type="row"/>
+                    <field name="curled" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Feed Consumption Pivot Table -->
+        <record id="view_chicken_feed_pivot" model="ir.ui.view">
+            <field name="name">chicken.feed.pivot</field>
+            <field name="model">chicken.batch</field>
+            <field name="arch" type="xml">
+                <pivot string="Feed Consumption">
+                    <field name="name" type="col"/>
+                    <field name="total_feed" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+         <!-- Stock Count Pivot  -->
+        <record id="view_chicken_stock_count_pivot" model="ir.ui.view">
+            <field name="name">chicken.feed.pivot</field>
+            <field name="model">chicken.batch</field>
+            <field name="arch" type="xml">
+                <pivot string="Feed Consumption">
+                    <field name="name" type="col"/>
+                    <field name="stock" type="measure"/>
+                </pivot>
             </field>
         </record>
 
@@ -138,6 +195,46 @@
             <field name="res_model">chicken.batch</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
+        <!-- Action for Egg Production Report -->
+        <record id="action_chicken_batch_graph" model="ir.actions.act_window">
+            <field name="name">Egg Production Report</field>
+            <field name="res_model">chicken.batch</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_chicken_batch_graph"/>  <!-- Explicitly set the view -->
+        </record>
+
+        <!-- Action for Culling Report -->
+        <record id="action_chicken_cull_graph" model="ir.actions.act_window">
+            <field name="name">Culling Report</field>
+            <field name="res_model">chicken.batch</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_chicken_cull_graph"/>  <!-- Explicitly set the view -->
+        </record>
+
+        <!-- Action for Feed Consumption Report -->
+        <record id="action_chicken_feed_pivot" model="ir.actions.act_window">
+            <field name="name">Feed Consumption Report</field>
+            <field name="res_model">chicken.batch</field>
+            <field name="view_mode">pivot</field>
+        </record>
+
+          <!-- Action for stock analysis -->
+        <record id="action_chicken_stock_batch_graph" model="ir.actions.act_window">
+            <field name="name">Stock Batch Report</field>
+            <field name="res_model">chicken.batch</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_chicken_batch_stock_graph"/>  <!-- Explicitly set the view -->
+        </record>
+
+            <!-- Action for count -->
+        <record id="action_chicken_stock_count_pivot" model="ir.actions.act_window">
+            <field name="name">Stock Count Report</field>
+            <field name="res_model">chicken.batch</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_chicken_stock_count_pivot"/>  <!-- Explicitly set the view -->
+        </record>
+
+
 
     </data>
 </odoo>

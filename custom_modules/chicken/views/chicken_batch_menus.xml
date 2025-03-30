@@ -6,18 +6,31 @@
             <menuitem id="chicken_batch_menu" name="Batchs">
                 <menuitem id="chicken_batch_model_menu_action" action="chicken_batch_action"/>
             </menuitem>
-             <menuitem id="chicken_cull_menu" name="Culling">
+            <menuitem id="chicken_cull_menu" name="Culling">
                 <menuitem id="chicken_cull_model_menu_action" action="chicken_cull_action"/>
             </menuitem>
             <menuitem id="chicken_eggs_menu" name="Eggs">
                 <menuitem id="chicken_eggs_model_menu_action" action="chicken_eggs_action"/>
             </menuitem>
-             <menuitem id="chicken_feed_menu" name="Feeding">
+            <menuitem id="chicken_feed_menu" name="Feeding">
                 <menuitem id="chicken_feed_model_menu_action" action="chicken_feed_action"/>
             </menuitem>
-             <menuitem id="chicken_vaccination_menu" name="Vaccination">
+            <menuitem id="chicken_vaccination_menu" name="Vaccination">
                 <menuitem id="chicken_vaccination_model_menu_action" action="chicken_vaccination_action"/>
             </menuitem>
+
+            <menuitem id="chicken_report_menu" name="Reports">
+                <menuitem id="chicken_report_stock_count_pivot" name="Stock Count"  action="action_chicken_stock_count_pivot"/>
+                <menuitem id="chicken_report_batch_stock_graph" name="Stock Analysis"  action="action_chicken_stock_batch_graph"/>
+                <menuitem id="chicken_report_egg_production" name="Egg Production Report"  action="action_chicken_batch_graph"/>
+                <menuitem id="chicken_report_culling" name="Culling Report"  action="action_chicken_cull_graph"/>
+                <menuitem id="chicken_report_feed_consumption" name="Feed Consumption Report" action="action_chicken_feed_pivot"/>
+            </menuitem>
+
+            <!-- Submenus -->
+            <!--            <menuitem id="chicken_report_egg_production" name="Egg Production Report" parent="chicken_report_menu" action="action_chicken_batch_graph"/>-->
+            <!--            <menuitem id="chicken_report_culling" name="Culling Report" parent="chicken_report_menu" action="action_chicken_cull_graph"/>-->
+            <!--            <menuitem id="chicken_report_feed_consumption" name="Feed Consumption Report" parent="chicken_report_menu" action="action_chicken_feed_pivot"/>-->
         </menuitem>
     </data>
 </odoo>
