@@ -7,13 +7,15 @@
             <field name="name">chicken.feed.tree</field>
             <field name="model">chicken.feed</field>
             <field name="arch" type="xml">
-                <tree string="Feed Entries" >
+                <tree string="Feed Entries" editable="bottom"  >
                     <field name="feeding_ref" string="Ref"/>
+                    <field name="feed_type" string="Feed Type"/>
                     <field name="quantity" string="Quantity (Kgs)"/>
                     <field name="product_id" string="Feed Name"/>
+                    <field name="date" string="Feeding Date"/>
                     <field name="batch_id" string="Batch"/>
                     <field name="comment" string="Comment"/>
-                    <field name="date" string="Feeding Date"/>
+
                 </tree>
             </field>
         </record>
@@ -35,6 +37,7 @@
                             <group>
                                 <field name="feeding_ref" widget="badge" string="🔢 Reference"/>
                                 <field name="product_id" widget="selection" string="🌱 Feed Name"/>
+                                <field name="feed_type" widget="selection" string="🍗 Feed Type"/>
                                 <field name="quantity" widget="float" string="⚖ Quantity (Kgs)"/>
                             </group>
                             <group>
@@ -56,6 +59,7 @@
             <field name="arch" type="xml">
                 <search string="Search Feed Entries">
                     <field name="feeding_ref"/>
+                    <field name="feed_type"/>
                     <field name="product_id"/>
                     <field name="batch_id"/>
                     <field name="quantity"/>
@@ -63,11 +67,13 @@
 
                     <filter string="Batch" name="batch_filter" domain="[('batch_id', '!=', False)]"/>
                     <filter string="Feed Name" name="product_filter" domain="[('product_id', '!=', False)]"/>
+                    <filter string="Feed Type" name="feed_type_filter" domain="[('feed_type', '!=', False)]"/>
 
                     <group expand="0" string="Group By">
                         <filter string="Feeding Date" name="group_by_date" context="{'group_by': 'date'}"/>
                         <filter string="Feed Name" name="group_by_product" context="{'group_by': 'product_id'}"/>
                         <filter string="Batch" name="group_by_batch" context="{'group_by': 'batch_id'}"/>
+                        <filter string="Feed Type" name="group_by_feed_type" context="{'group_by': 'feed_type'}"/>
                     </group>
                 </search>
             </field>
@@ -81,6 +87,7 @@
                 <graph string="Feed Consumption Trends" type="bar">
                     <field name="date" type="row" interval="day"/>
                     <field name="quantity" type="measure"/>
+                    <field name="feed_type" type="col"/>
                     <field name="product_id" type="col"/>
                     <field name="batch_id" type="col"/>
                 </graph>
@@ -94,6 +101,7 @@
             <field name="arch" type="xml">
                 <pivot string="Feed Consumption Analysis">
                     <field name="date" type="row" interval="day"/>
+                    <field name="feed_type" type="row"/>
                     <field name="product_id" type="row"/>
                     <field name="batch_id" type="col"/>
                     <field name="quantity" type="measure"/>

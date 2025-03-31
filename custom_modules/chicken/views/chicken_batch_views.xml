@@ -159,7 +159,7 @@
                     <filter name="low_stock" string="Low Stock &lt; 50 Birds" domain="[('stock', '&lt;', 50)]"/>
                     <filter name="high_cull_rate" string="High Cull Rate &gt; 100 Curled Birds" domain="[('curled', '&gt;', 100)]"/>
                     <filter name="high_egg_production" string="High Egg Production Avg 50" domain="[('average_eggs_daily', '&gt;', 50)]"/>
-                    <filter name="not_laying" string="Not Laying Yet &gt; Laying Start Date Not activated" domain="[('laying_start_date', '=', False)]"/>
+<!--                    <filter name="not_laying" string="Not Laying Yet &gt; Laying Start Date Not activated" domain="[('laying_start_date', '=', False)]"/>-->
                     <!--                    <filter name="not_vaccinated" string="Not Vaccinated" domain="[('vaccination_ids', '=', False)]"/>-->
 
                     <!-- Searchable Fields -->

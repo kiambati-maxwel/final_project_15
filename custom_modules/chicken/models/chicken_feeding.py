@@ -7,6 +7,12 @@ class ChickenFeeding(models.Model):
 
     # ====== Independent fields ====
     feeding_ref = fields.Char('Reference', copy=False, readonly=True, default=lambda x: _('New'))
+    feed_type = fields.Selection([
+        ('starter_mash', 'Starter Mash (0-4 weeks)'),
+        ('grower_mash', 'Grower Mash (5-10 weeks)'),
+        ('pre_layer_mash', 'Pre-Layer Mash (11-16 weeks)'),
+        ('layer_mash', 'Layer Mash (17+ weeks)')
+    ], string="Feed Type", required=True)
     comment = fields.Text()
 
 
