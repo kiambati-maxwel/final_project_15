@@ -36,9 +36,16 @@
                     <menuitem id="chicken_eggs_count" name="Eggs Count"  action="chicken_feed_pivot_action"/>
 
                 </menuitem>
-                 <menuitem id="Feeding_Child_Reports" name="Feeding">
+                <menuitem id="Feeding_Child_Reports" name="Feeding">
                     <menuitem id="chicken_feeding_analysis" name="Feeding Analysis"  action="chicken_feed_graph_action"/>
                     <menuitem id="chicken_feed_count" name="Feed Quantity"  action="chicken_eggs_pivot_action"/>
+
+                </menuitem>
+
+
+                <menuitem id="Vaccination_Child_Reports" name="Vaccination">
+                    <menuitem id="chicken_vaccination_analysis" name="Vaccination"  action="chicken_vaccination_graph_action"/>
+                    <menuitem id="chicken_vaccination_count" name="Vaccination Quantities"  action="chicken_vaccination_pivot_action"/>
 
                 </menuitem>
 

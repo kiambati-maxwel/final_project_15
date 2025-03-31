@@ -20,6 +20,7 @@
             </field>
         </record>
 
+
         <!-- Form view with improved layout -->
         <record id="chicken_vaccination_form_view" model="ir.ui.view">
             <field name="name">Vaccination Form</field>
@@ -50,6 +51,28 @@
             </field>
         </record>
 
+        <!-- Search view with filters and group by options -->
+        <record id="chicken_vaccination_search_view" model="ir.ui.view">
+            <field name="name">Vaccination Search</field>
+            <field name="model">chicken.vaccination</field>
+            <field name="arch" type="xml">
+                <search string="Vaccination Search">
+                    <field name="vaccination_ref"/>
+                    <field name="product_id"/>
+                    <field name="batch_id"/>
+                    <field name="partner_id"/>
+                    <field name="status"/>
+                    <filter name="scheduled" string="Scheduled" domain="[['status', '=', 'scheduled']]"/>
+                    <filter name="done" string="Completed" domain="[['status', '=', 'done']]"/>
+                    <filter name="canceled" string="Canceled" domain="[['status', '=', 'canceled']]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_batch" string="Batch" context="{'group_by': 'batch_id'}"/>
+                        <filter name="group_by_product" string="Vaccine" context="{'group_by': 'product_id'}"/>
+                        <filter name="group_by_responsible" string="Responsible" context="{'group_by': 'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
         <!-- Calendar view -->
         <record id="chicken_vaccination_calendar_view" model="ir.ui.view">
             <field name="name">Vaccination Calendar</field>
@@ -64,19 +87,21 @@
             </field>
         </record>
 
-        <!-- Graph view -->
+        <!-- Enhanced Graph View -->
         <record id="chicken_vaccination_graph_view" model="ir.ui.view">
             <field name="name">Vaccination Graph</field>
             <field name="model">chicken.vaccination</field>
             <field name="arch" type="xml">
                 <graph string="Vaccination Analysis" type="bar">
-                    <field name="vaccination_date" interval="month"/>
+                    <field name="scheduled_date" interval="month"/>
                     <field name="quantity" type="measure"/>
+                    <field name="product_id" type="col"/>
+                    <field name="batch_id" type="row"/>
                 </graph>
             </field>
         </record>
 
-        <!-- Pivot view -->
+        <!-- Enhanced Pivot View -->
         <record id="chicken_vaccination_pivot_view" model="ir.ui.view">
             <field name="name">Vaccination Pivot</field>
             <field name="model">chicken.vaccination</field>
@@ -84,6 +109,8 @@
                 <pivot string="Vaccination Pivot">
                     <field name="batch_id" type="row"/>
                     <field name="product_id" type="col"/>
+                    <field name="partner_id" type="row"/>
+                    <field name="status" type="col"/>
                     <field name="quantity" type="measure"/>
                 </pivot>
             </field>
@@ -94,6 +121,20 @@
             <field name="name">Vaccination</field>
             <field name="res_model">chicken.vaccination</field>
             <field name="view_mode">tree,form,calendar,graph,pivot</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="chicken_vaccination_graph_action">
+            <field name="name">Vaccination Graph</field>
+            <field name="res_model">chicken.vaccination</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="chicken_vaccination_graph_view"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="chicken_vaccination_pivot_action">
+            <field name="name">Vaccination Pivot</field>
+            <field name="res_model">chicken.vaccination</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="chicken_vaccination_pivot_view"/>
         </record>
     </data>
 </odoo>
