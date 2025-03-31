@@ -177,6 +177,7 @@
                         <filter name="group_by_laying_start" string="Laying Start Date" context="{'group_by': 'laying_start_date'}"/>
                         <filter name="group_by_stock" string="Stock" context="{'group_by': 'stock'}"/>
                         <filter name="group_by_age" string="Age" context="{'group_by': 'age'}"/>
+                        <filter name="group_by_batch" string="Batch" context="{'group_by': 'name'}"/>
                     </group>
                 </search>
             </field>

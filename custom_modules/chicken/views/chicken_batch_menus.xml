@@ -19,12 +19,25 @@
                 <menuitem id="chicken_vaccination_model_menu_action" action="chicken_vaccination_action"/>
             </menuitem>
 
-            <menuitem id="chicken_report_menu" name=" Batch Reports">
-                <menuitem id="chicken_report_stock_count_pivot" name="Stock Count"  action="action_chicken_stock_count_pivot"/>
-                <menuitem id="chicken_report_batch_stock_graph" name="Stock Analysis"  action="action_chicken_stock_batch_graph"/>
-                <menuitem id="chicken_report_egg_production" name="Egg Production Report"  action="action_chicken_batch_graph"/>
-                <menuitem id="chicken_report_culling" name="Culling Report"  action="action_chicken_cull_graph"/>
-                <menuitem id="chicken_report_feed_consumption" name="Feed Consumption Report" action="action_chicken_feed_pivot"/>
+            <menuitem id="chicken_report_menu" name="Reports">
+                <menuitem id="Batch_Child_Reports" name="Batch">
+                    <menuitem id="chicken_report_stock_count_pivot" name="Stock Count"  action="action_chicken_stock_count_pivot"/>
+                    <menuitem id="chicken_report_batch_stock_graph" name="Stock Analysis"  action="action_chicken_stock_batch_graph"/>
+                    <menuitem id="chicken_report_egg_production" name="Egg Production Report"  action="action_chicken_batch_graph"/>
+                    <menuitem id="chicken_report_culling" name="Culling Report"  action="action_chicken_cull_graph"/>
+                    <menuitem id="chicken_report_feed_consumption" name="Feed Consumption Report" action="action_chicken_feed_pivot"/>
+                </menuitem>
+                <menuitem id="Cull_Child_Reports" name="Culling">
+                    <menuitem id="chicken_cull_analysis" name="Cull Analysis"  action="chicken_cull_graph_action"/>
+                    <menuitem id="chicken_cull_count_analysis" name="Cull Counts"  action="chicken_cull_pivot_action"/>
+                </menuitem>
+                <menuitem id="Eggs_Child_Reports" name="Eggs">
+                    <menuitem id="chicken_eggs_analysis" name="Eggs Analysis"  action="chicken_eggs_graph_action"/>
+                    <menuitem id="chicken_eggs_count" name="Eggs Count"  action="chicken_eggs_pivot_action"/>
+
+                </menuitem>
+
+
             </menuitem>
 
         </menuitem>

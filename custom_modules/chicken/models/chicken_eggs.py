@@ -9,6 +9,7 @@ class ChickenEggs(models.Model):
     quantity = fields.Integer()
     comment = fields.Text()
     date = fields.Date(default = fields.datetime.today())
+    responsible = fields.Many2one('res.partner')  # Responsible
 
     # Relational fields
     batch_id = fields.Many2one('chicken.batch')

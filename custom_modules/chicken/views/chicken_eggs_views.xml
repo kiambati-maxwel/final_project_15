@@ -2,26 +2,238 @@
 
 <odoo>
     <data>
-          <!--    tree view     -->
-    <record id="chicken_cull_eggs_view" model="ir.ui.view">
-      <field name="name">Eggs</field>
-      <field name="model">chicken.eggs</field>
-      <field name="arch" type="xml">
-            <tree string="Eggs Entry" editable="bottom" class="o_list_view ">
-                  <field name="eggs_ref" string="Eggs Entry Ref"/>
-                 <field name="quantity" string="Quantity"/>
-                 <field name="date" string="Date"/>
-                   <field name="batch_id" string="Batch" modifiers="{'tree_invisible': True}"/>
-                  <field name="comment" string="Comment"/>
-            </tree>
-      </field>
+        <!--    tree view     -->
+        <record id="chicken_cull_eggs_view" model="ir.ui.view">
+            <field name="name">Eggs</field>
+            <field name="model">chicken.eggs</field>
+            <field name="arch" type="xml">
+                <tree string="Eggs Entry" editable="bottom" class="o_list_view ">
+                    <field name="eggs_ref" string="Eggs Entry Ref"/>
+                    <field name="quantity" string="Quantity"/>
+                    <field name="date" string="Date"/>
+                    <field name="batch_id" string="Batch" modifiers="{'tree_invisible': True}"/>
+                    <field name="responsible" string="Responsible"/>
+                    <field name="comment" string="Comment"/>
+                </tree>
+            </field>
+        </record>
 
-    </record>
+        <!-- Enhanced and Beautiful Form View -->
+        <record id="chicken_eggs_form_view" model="ir.ui.view">
+            <field name="name">Eggs Form</field>
+            <field name="model">chicken.eggs</field>
+            <field name="arch" type="xml">
+                <form string="Eggs Entry">
+                    <sheet>
+                        <group>
+                            <group string="Eggs Information" colspan="2">
+                                <field name="eggs_ref" placeholder="Enter Egg Entry Reference"/>
+                                <field name="quantity" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="date" widget="date"/>
+                                <field name="batch_id"/>
+                                <field name="responsible" string="Responsible"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Comments">
+                                <group>
+                                    <field name="comment" placeholder="Add any relevant comments"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="chicken_eggs_search_view" model="ir.ui.view">
+            <field name="name">Eggs Search</field>
+            <field name="model">chicken.eggs</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="eggs_ref"/>
+                    <field name="date"/>
+                    <field name="batch_id"/>
+                    <field name="quantity"/>
+                    <field name="responsible" string="Responsible"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_batch" string="Batch" domain="[]" context="{'group_by': 'batch_id'}"/>
+                        <filter name="group_by_date" string="Date" domain="[]" context="{'group_by': 'date'}"/>
+                        <filter name="group_by_responsible" string="Responsible" domain="[]" context="{'group_by': 'responsible'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Graph View -->
+        <record id="chicken_eggs_graph_view" model="ir.ui.view">
+            <field name="name">Eggs Graph</field>
+            <field name="model">chicken.eggs</field>
+            <field name="arch" type="xml">
+                <graph string="Eggs Analysis" type="bar">
+                    <field name="date" type="row"/>
+                    <field name="quantity" type="measure"/>
+                    <field name="batch_id" type="col"/>
+                    <field name="responsible" type="col"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Pivot View -->
+        <record id="chicken_eggs_pivot_view" model="ir.ui.view">
+            <field name="name">Eggs Pivot</field>
+            <field name="model">chicken.eggs</field>
+            <field name="arch" type="xml">
+                <pivot string="Eggs Analysis">
+                    <field name="date" type="row"/>
+                    <field name="batch_id" type="row"/>
+                    <field name="quantity" type="measure"/>
+                    <field name="responsible" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
         <!-- actions opening views on models -->
         <record model="ir.actions.act_window" id="chicken_eggs_action">
-          <field name="name">Eggs</field>
-          <field name="res_model">chicken.eggs</field>
-          <field name="view_mode">tree,form</field>
+            <field name="name">Eggs</field>
+            <field name="res_model">chicken.eggs</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+        </record>
+
+        <!-- Action: Graph View -->
+        <record model="ir.actions.act_window" id="chicken_eggs_graph_action">
+            <field name="name">Eggs Graph</field>
+            <field name="res_model">chicken.eggs</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="chicken_eggs_graph_view"/>
+        </record>
+
+        <!-- Action: Pivot View -->
+        <record model="ir.actions.act_window" id="chicken_eggs_pivot_action">
+            <field name="name">Eggs Pivot</field>
+            <field name="res_model">chicken.eggs</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="chicken_eggs_pivot_view"/>
         </record>
     </data>
 </odoo>
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash;    tree view     &ndash;&gt;-->
+<!--        <record id="chicken_cull_eggs_view" model="ir.ui.view">-->
+<!--            <field name="name">Eggs</field>-->
+<!--            <field name="model">chicken.eggs</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Eggs Entry" editable="bottom" class="o_list_view ">-->
+<!--                    <field name="eggs_ref" string="Eggs Entry Ref"/>-->
+<!--                    <field name="quantity" string="Quantity"/>-->
+<!--                    <field name="date" string="Date"/>-->
+<!--                    <field name="batch_id" string="Batch" modifiers="{'tree_invisible': True}"/>-->
+<!--                    <field name="comment" string="Comment"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Enhanced and Beautiful Form View &ndash;&gt;-->
+<!--        <record id="chicken_eggs_form_view" model="ir.ui.view">-->
+<!--            <field name="name">Eggs Form</field>-->
+<!--            <field name="model">chicken.eggs</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Eggs Entry">-->
+<!--                    <sheet>-->
+<!--                        <group>-->
+<!--                            <group string="Eggs Information" colspan="2">-->
+<!--                                <field name="eggs_ref" placeholder="Enter Egg Entry Reference"/>-->
+<!--                                <field name="quantity" widget="monetary" options="{'currency_field': 'currency_id'}"/>-->
+<!--                                <field name="date" widget="date"/>-->
+<!--                                <field name="batch_id"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+<!--                        <notebook>-->
+<!--                            <page string="Comments">-->
+<!--                                <group>-->
+<!--                                    <field name="comment" placeholder="Add any relevant comments"/>-->
+<!--                                </group>-->
+<!--                            </page>-->
+<!--                        </notebook>-->
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Search View &ndash;&gt;-->
+<!--        <record id="chicken_eggs_search_view" model="ir.ui.view">-->
+<!--            <field name="name">Eggs Search</field>-->
+<!--            <field name="model">chicken.eggs</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search>-->
+<!--                    <field name="eggs_ref"/>-->
+<!--                    <field name="date"/>-->
+<!--                    <field name="batch_id"/>-->
+<!--                    <field name="quantity"/>-->
+<!--                    <group expand="0" string="Group By">-->
+<!--                        <filter name="group_by_batch" string="Batch" domain="[]" context="{'group_by': 'batch_id'}"/>-->
+<!--                        <filter name="group_by_date" string="Date" domain="[]" context="{'group_by': 'date'}"/>-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        &lt;!&ndash; Graph View &ndash;&gt;-->
+<!--        <record id="chicken_eggs_graph_view" model="ir.ui.view">-->
+<!--            <field name="name">Eggs Graph</field>-->
+<!--            <field name="model">chicken.eggs</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <graph string="Eggs Analysis" type="bar">-->
+<!--                    <field name="date" type="row"/>-->
+<!--                    <field name="quantity" type="measure"/>-->
+<!--                    <field name="batch_id" type="col"/>-->
+<!--                </graph>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Pivot View &ndash;&gt;-->
+<!--        <record id="chicken_eggs_pivot_view" model="ir.ui.view">-->
+<!--            <field name="name">Eggs Pivot</field>-->
+<!--            <field name="model">chicken.eggs</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <pivot string="Eggs Analysis">-->
+<!--                    <field name="date" type="row"/>-->
+<!--                    <field name="batch_id" type="row"/>-->
+<!--                    <field name="quantity" type="measure"/>-->
+<!--                </pivot>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; actions opening views on models &ndash;&gt;-->
+<!--        <record model="ir.actions.act_window" id="chicken_eggs_action">-->
+<!--            <field name="name">Eggs</field>-->
+<!--            <field name="res_model">chicken.eggs</field>-->
+<!--            <field name="view_mode">tree,form,graph,pivot</field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Action: Graph View &ndash;&gt;-->
+<!--        <record model="ir.actions.act_window" id="chicken_eggs_graph_action">-->
+<!--            <field name="name">Eggs Graph</field>-->
+<!--            <field name="res_model">chicken.eggs</field>-->
+<!--            <field name="view_mode">graph</field>-->
+<!--            <field name="view_id" ref="chicken_eggs_graph_view"/>-->
+
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Action: Pivot View &ndash;&gt;-->
+<!--        <record model="ir.actions.act_window" id="chicken_eggs_pivot_action">-->
+<!--            <field name="name">Eggs Pivot</field>-->
+<!--            <field name="res_model">chicken.eggs</field>-->
+<!--            <field name="view_mode">pivot</field>-->
+<!--            <field name="view_id" ref="chicken_eggs_pivot_view"/>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->

@@ -2,29 +2,127 @@
 
 <odoo>
     <data>
-          <!--    tree view     -->
-    <record id="chicken_cull_tree_view" model="ir.ui.view">
-      <field name="name">Culls</field>
-      <field name="model">chicken.cull</field>
-      <field name="arch" type="xml">
-            <tree string="Chicken Culls" editable="bottom">
-                  <field name="cull_ref" string="Cul Reference"/>
-                  <field name="number" string="Number of Chicken"/>
+        <!--    tree view     -->
+        <record id="chicken_cull_tree_view" model="ir.ui.view">
+            <field name="name">Culls</field>
+            <field name="model">chicken.cull</field>
+            <field name="arch" type="xml">
+                <tree string="Chicken Culls" >
+                    <field name="cull_ref" string="Cull Reference"/>
+                    <!--   <field name="transfer_id" string="Transfer Ref"/>-->
+                    <field name="cull_date" string="Date"/>
+                    <field name="number" string="Number of Birds"/>
+                    <field name="cull_reason" string="Reason" />
+                    <field name="cull_description" string="Description"/>
+                    <field name="batch_id" string="Batch"/>
+                </tree>
+            </field>
+        </record>
 
-<!--                  <field name="transfer_id" string="Transfer Ref"/>-->
-                  <field name="cull_date" string="Date"/>
-                <field name="batch_id" string="Batch"/>
-                  <field name="cull_reason" string="Reason" />
-                  <field name="cull_description" string="Description"/>
-            </tree>
-      </field>
 
-    </record>
+        <record id="chicken_cull_form_view" model="ir.ui.view">
+            <field name="name">chicken.cull.form</field>
+            <field name="model">chicken.cull</field>
+            <field name="arch" type="xml">
+                <form string="Chicken Cull">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="cull_ref" string="Cull Reference" placeholder="Enter Cull Reference"/>
+                                <field name="batch_id" string="Batch" options="{'no_create': True}"/>
+                                <field name="cull_date" string="Cull Date" widget="date"/>
+                            </group>
+                            <group>
+                                <field name="number" string="Number of Chickens" attrs="{'required': True}" widget="monetary"/>
+                                <field name="cull_reason" string="Reason"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="📄 Cull Details">
+                                <group>
+                                    <field name="cull_description" string="Detailed Description" widget="text"/>
+                                </group>
+                            </page>
+                            <page string="🧑‍🔧 Additional Info">
+                                <group>
+                                    <field name="responsible_id" string="Responsible Person" widget="many2one"/>
+                                    <field name="responsible_comments" string="Comments" widget="text"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="chicken_cull_search_view" model="ir.ui.view">
+            <field name="name">chicken.cull.search</field>
+            <field name="model">chicken.cull</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="cull_ref"/>
+                    <field name="batch_id"/>
+                    <field name="cull_reason"/>
+                    <field name="cull_date"/>
+                    <filter name="filter_cull_date" string="Cull Date" domain="[('cull_date', '!=', False)]"/>
+                    <filter name="filter_date_range" string="Cull Date Range" domain="[('cull_date', '&gt;=', '2024-01-01'), ('cull_date', '&lt;=', '2024-12-31')]" help="Filter by date range"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_batch" string="Batch" context="{'group_by': 'batch_id'}"/>
+                        <filter name="group_reason" string="Reason" context="{'group_by': 'cull_reason'}"/>
+                        <filter name="group_date" string="Date" context="{'group_by': 'cull_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+         <!-- Graph View -->
+        <record id="chicken_cull_graph_view" model="ir.ui.view">
+            <field name="name">chicken.cull.graph</field>
+            <field name="model">chicken.cull</field>
+            <field name="arch" type="xml">
+                <graph string="Chicken Culls" type="bar">
+                    <field name="cull_date" type="row"/>
+                    <field name="number" type="measure"/>
+                    <field name="batch_id" type="col"/>
+                    <field name="cull_reason" type="col"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Pivot View -->
+        <record id="chicken_cull_pivot_view" model="ir.ui.view">
+            <field name="name">chicken.cull.pivot</field>
+            <field name="model">chicken.cull</field>
+            <field name="arch" type="xml">
+                <pivot string="Chicken Culls">
+                    <field name="cull_date" type="row"/>
+                    <field name="batch_id" type="col"/>
+                    <field name="cull_reason" type="col"/>
+                    <field name="number" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+
         <!-- actions opening views on models -->
         <record model="ir.actions.act_window" id="chicken_cull_action">
-          <field name="name">Cull</field>
-          <field name="res_model">chicken.cull</field>
-          <field name="view_mode">tree,form</field>
+            <field name="name">Cull</field>
+            <field name="res_model">chicken.cull</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="chicken_cull_graph_action">
+            <field name="name">Cull Statistics</field>
+            <field name="res_model">chicken.cull</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="chicken_cull_graph_view"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="chicken_cull_pivot_action">
+            <field name="name">Cull Analysis</field>
+            <field name="res_model">chicken.cull</field>
+            <field name="view_mode">pivot</field>
         </record>
     </data>
 </odoo>
