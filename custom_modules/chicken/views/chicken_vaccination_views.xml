@@ -11,6 +11,7 @@
                     <field name="vaccination_ref" string="Ref"/>
                     <field name="product_id" string="Vaccine"/>
                     <field name="quantity" string="Quantity"/>
+                     <field name="uom_id" string="Unit of Measure"/>
                     <field name="partner_id" string="Responsible"/>
                     <field name="batch_id" string="Batch"/>
                     <field name="scheduled_date" string="Scheduled Date"/>
@@ -33,6 +34,7 @@
                                 <field name="vaccination_ref" readonly="1"/>
                                 <field name="product_id"/>
                                 <field name="quantity"/>
+                                <field name="uom_id" string="Unit of Measure"/>
                                 <field name="batch_id"/>
                             </group>
                             <group>

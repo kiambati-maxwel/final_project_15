@@ -18,6 +18,8 @@ class ChickenVaccination(models.Model):
 
     # Relational fields
     product_id = fields.Many2one('product.product', string='Vaccine')
+    uom_id = fields.Many2one('uom.uom', string='Unit of Measure', related='product_id.uom_id', store=True,
+                             readonly=True)
     partner_id = fields.Many2one('res.partner', string='Responsible')
     batch_id = fields.Many2one('chicken.batch', string='Batch')
 
