@@ -7,11 +7,11 @@
             <field name="name">Vaccinations</field>
             <field name="model">chicken.vaccination</field>
             <field name="arch" type="xml">
-                <tree string="Vaccination Entries" editable="bottom" >
+                <tree string="Vaccination Entries"  >
                     <field name="vaccination_ref" string="Ref"/>
                     <field name="product_id" string="Vaccine"/>
                     <field name="quantity" string="Quantity"/>
-                     <field name="uom_id" string="Unit of Measure"/>
+                    <field name="uom_id" string="Unit of Measure"/>
                     <field name="partner_id" string="Responsible"/>
                     <field name="batch_id" string="Batch"/>
                     <field name="scheduled_date" string="Scheduled Date"/>
@@ -21,8 +21,7 @@
             </field>
         </record>
 
-
-        <!-- Form view with improved layout -->
+        <!-- Enhanced Form View with Illustrative Icons and Improved Layout -->
         <record id="chicken_vaccination_form_view" model="ir.ui.view">
             <field name="name">Vaccination Form</field>
             <field name="model">chicken.vaccination</field>
@@ -32,20 +31,32 @@
                         <group>
                             <group>
                                 <field name="vaccination_ref" readonly="1"/>
-                                <field name="product_id"/>
-                                <field name="quantity"/>
-                                <field name="uom_id" string="Unit of Measure"/>
-                                <field name="batch_id"/>
+                                <field name="product_id" placeholder="🔬 Select a vaccine" options="{'no_create': True}"/>
+                                <field name="quantity" placeholder="📦 Enter quantity"/>
+                                <field name="uom_id" string="⚖️ Unit of Measure" readonly="1"/>
+                                <field name="batch_id" placeholder="🐔 Select batch"/>
                             </group>
                             <group>
-                                <field name="partner_id"/>
-                                <field name="scheduled_date"/>
+                                <field name="partner_id" placeholder="👤 Assign a responsible person"/>
+                                <field name="scheduled_date" widget="date" string="📅 Scheduled Date"/>
                                 <field name="status" widget="statusbar" statusbar_visible="scheduled,done,canceled"/>
                             </group>
                         </group>
                         <notebook>
-                            <page string="Comments">
-                                <field name="comment"/>
+                            <page string="📝 Comments">
+                                <group>
+                                    <field name="comment" widget="text" placeholder="✍️ Add any additional notes here..."/>
+                                </group>
+                            </page>
+                            <page string="📋 Additional Info">
+                                <group>
+                                    <field name="vaccination_date" string="📅 Vaccination Date"/>
+                                </group>
+                            </page>
+                            <page string="📎 Attachments">
+                                <group>
+                                    <field name="attachment_ids" widget="many2many_binary" string="📂 Attachments"/>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>

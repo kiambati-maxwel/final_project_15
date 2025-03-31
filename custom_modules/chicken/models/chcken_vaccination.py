@@ -17,11 +17,13 @@ class ChickenVaccination(models.Model):
     ], default='scheduled', string='Status')
 
     # Relational fields
-    product_id = fields.Many2one('product.product', string='Vaccine')
-    uom_id = fields.Many2one('uom.uom', string='Unit of Measure', related='product_id.uom_id', store=True,
-                             readonly=True)
+    product_id = fields.Many2one('product.product', string='Vaccine', required=True)
     partner_id = fields.Many2one('res.partner', string='Responsible')
     batch_id = fields.Many2one('chicken.batch', string='Batch')
+
+    # Derived Fields
+    uom_id = fields.Many2one('uom.uom', string="Unit of Measure", related='product_id.uom_id', readonly=True, store=True)
+    attachment_ids = fields.Many2many('ir.attachment', string="Attachments")
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -36,7 +38,5 @@ class ChickenVaccination(models.Model):
         today = fields.Date.today()
         vaccinations = self.search([('scheduled_date', '=', today), ('status', '=', 'scheduled')])
         for vac in vaccinations:
-            # Notify responsible user or take automated action
             message = f"Reminder: Vaccination {vac.vaccination_ref} is scheduled today."
             vac.partner_id.message_post(body=message)
-
