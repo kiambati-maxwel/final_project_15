@@ -50,26 +50,48 @@
         </record>
 
 
-
-        <!-- Search View -->
+          <!-- 🔍 Enhanced Search View -->
         <record id="chicken_eggs_search_view" model="ir.ui.view">
-            <field name="name">Eggs Search</field>
+            <field name="name">🔍 Eggs Search</field>
             <field name="model">chicken.eggs</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="eggs_ref"/>
-                    <field name="date"/>
-                    <field name="batch_id"/>
-                    <field name="quantity"/>
-                    <field name="responsible" string="Responsible"/>
-                    <group expand="0" string="Group By">
-                        <filter name="group_by_batch" string="Batch" domain="[]" context="{'group_by': 'batch_id'}"/>
-                        <filter name="group_by_date" string="Date" domain="[]" context="{'group_by': 'date'}"/>
-                        <filter name="group_by_responsible" string="Responsible" domain="[]" context="{'group_by': 'responsible'}"/>
+                    <field name="eggs_ref" string="🔖 Entry Ref"/>
+                    <field name="date" string="📅 Date" filter_domain="[('date', '>=', context_today())]"/>
+                    <field name="batch_id" string="📦 Batch"/>
+                    <field name="quantity" string="📦 Quantity"/>
+                    <field name="responsible" string="👤 Responsible"/>
+                    <field name="comment" string="💬 Comment"/>
+                    <group expand="0" string="📊 Group By">
+                        <filter name="group_by_batch" string="📦 Batch" context="{'group_by': 'batch_id'}"/>
+                        <filter name="group_by_date" string="📅 Date" context="{'group_by': 'date'}"/>
+                        <filter name="group_by_responsible" string="👤 Responsible" context="{'group_by': 'responsible'}"/>
+                        <filter name="group_by_quantity" string="📦 Quantity" context="{'group_by': 'quantity'}"/>
                     </group>
                 </search>
             </field>
         </record>
+
+
+<!--        &lt;!&ndash; Search View &ndash;&gt;-->
+<!--        <record id="chicken_eggs_search_view" model="ir.ui.view">-->
+<!--            <field name="name">Eggs Search</field>-->
+<!--            <field name="model">chicken.eggs</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search>-->
+<!--                    <field name="eggs_ref"/>-->
+<!--                    <field name="date"/>-->
+<!--                    <field name="batch_id"/>-->
+<!--                    <field name="quantity"/>-->
+<!--                    <field name="responsible" string="Responsible"/>-->
+<!--                    <group expand="0" string="Group By">-->
+<!--                        <filter name="group_by_batch" string="Batch" domain="[]" context="{'group_by': 'batch_id'}"/>-->
+<!--                        <filter name="group_by_date" string="Date" domain="[]" context="{'group_by': 'date'}"/>-->
+<!--                        <filter name="group_by_responsible" string="Responsible" domain="[]" context="{'group_by': 'responsible'}"/>-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
 
         <!-- Graph View -->
         <record id="chicken_eggs_graph_view" model="ir.ui.view">
