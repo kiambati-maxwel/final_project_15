@@ -2,27 +2,99 @@
 
 <odoo>
     <data>
-          <!--    tree view     -->
-    <record id="chicken_vaccination_view" model="ir.ui.view">
-      <field name="name">Vaccinations</field>
-      <field name="model">chicken.vaccination</field>
-      <field name="arch" type="xml">
-            <tree string="Vaccination Entries" editable="bottom">
-                  <field name="vaccination_ref" string="Ref"/>
-                  <field name="product_id" string="Vaccine"/>
-                  <field name="quantity" string="Quantity"/>
-                  <field name="partner_id" string="Responsible" />
-                  <field name="batch_id" string="Batch"/>
-                  <field name="comment" string="Comment"/>
-            </tree>
-      </field>
+        <!-- Tree view with status color coding -->
+        <record id="chicken_vaccination_view" model="ir.ui.view">
+            <field name="name">Vaccinations</field>
+            <field name="model">chicken.vaccination</field>
+            <field name="arch" type="xml">
+                <tree string="Vaccination Entries" editable="bottom" >
+                    <field name="vaccination_ref" string="Ref"/>
+                    <field name="product_id" string="Vaccine"/>
+                    <field name="quantity" string="Quantity"/>
+                    <field name="partner_id" string="Responsible"/>
+                    <field name="batch_id" string="Batch"/>
+                    <field name="scheduled_date" string="Scheduled Date"/>
+                    <field name="status" string="Status" decoration-info="status=='scheduled'" decoration-success="status=='done'" decoration-danger="status=='canceled'"/>
+                    <field name="comment" string="Comment"/>
+                </tree>
+            </field>
+        </record>
 
-    </record>
-        <!-- actions opening views on models -->
+        <!-- Form view with improved layout -->
+        <record id="chicken_vaccination_form_view" model="ir.ui.view">
+            <field name="name">Vaccination Form</field>
+            <field name="model">chicken.vaccination</field>
+            <field name="arch" type="xml">
+                <form string="Vaccination Details">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="vaccination_ref" readonly="1"/>
+                                <field name="product_id"/>
+                                <field name="quantity"/>
+                                <field name="batch_id"/>
+                            </group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="scheduled_date"/>
+                                <field name="status" widget="statusbar" statusbar_visible="scheduled,done,canceled"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Comments">
+                                <field name="comment"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Calendar view -->
+        <record id="chicken_vaccination_calendar_view" model="ir.ui.view">
+            <field name="name">Vaccination Calendar</field>
+            <field name="model">chicken.vaccination</field>
+            <field name="arch" type="xml">
+                <calendar string="Vaccination Schedule" date_start="scheduled_date" color="status">
+                    <field name="vaccination_ref"/>
+                    <field name="product_id"/>
+                    <field name="partner_id"/>
+                    <field name="batch_id"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Graph view -->
+        <record id="chicken_vaccination_graph_view" model="ir.ui.view">
+            <field name="name">Vaccination Graph</field>
+            <field name="model">chicken.vaccination</field>
+            <field name="arch" type="xml">
+                <graph string="Vaccination Analysis" type="bar">
+                    <field name="vaccination_date" interval="month"/>
+                    <field name="quantity" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Pivot view -->
+        <record id="chicken_vaccination_pivot_view" model="ir.ui.view">
+            <field name="name">Vaccination Pivot</field>
+            <field name="model">chicken.vaccination</field>
+            <field name="arch" type="xml">
+                <pivot string="Vaccination Pivot">
+                    <field name="batch_id" type="row"/>
+                    <field name="product_id" type="col"/>
+                    <field name="quantity" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Actions -->
         <record model="ir.actions.act_window" id="chicken_vaccination_action">
-          <field name="name">Vaccination</field>
-          <field name="res_model">chicken.vaccination</field>
-          <field name="view_mode">tree,form</field>
+            <field name="name">Vaccination</field>
+            <field name="res_model">chicken.vaccination</field>
+            <field name="view_mode">tree,form,calendar,graph,pivot</field>
         </record>
     </data>
 </odoo>
+

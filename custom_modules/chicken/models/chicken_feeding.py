@@ -15,6 +15,7 @@ class ChickenFeeding(models.Model):
     product_id = fields.Many2one('product.product', required=True)
     quantity = fields.Float(required=True)
     batch_id = fields.Many2one('chicken.batch')
+    date = fields.Date(default=fields.datetime.today())
 
     @api.model_create_multi
     def create(self, vals_list):
