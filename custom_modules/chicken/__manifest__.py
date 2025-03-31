@@ -12,6 +12,7 @@
         'views/chicken_feeding_views.xml',
         'views/chicken_vaccination_views.xml',
         'views/chicken_batch_menus.xml',
+        'reports/chicken_batch_report.xml',
     ],
 'assets': {
         'web.assets_backend': [
