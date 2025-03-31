@@ -6,12 +6,6 @@
             <field name="model">chicken.batch</field>
             <field name="arch" type="xml">
                 <form string="🐔 Chicken Batch Management">
-<!--                    <header>-->
-<!--                        <button name="%(chicken.chicken_batch_report_action)d"-->
-<!--                                string="Print Report"-->
-<!--                                type="action"-->
-<!--                                class="oe_highlight"/>-->
-<!--                    </header>-->
                     <sheet>
                         <div class="oe_title" style="text-align:center;">
                             <h1 class="d-flex" style="font-size: 1.8em; color: #4CAF50;">
@@ -311,27 +305,7 @@
             <field name="view_id" ref="view_chicken_stock_count_pivot"/>  <!-- Explicitly set the view -->
         </record>
 
-        <!--        &lt;!&ndash; Report Action &ndash;&gt;-->
-        <!--        <record id="chicken_batch_report_action" model="ir.actions.report">-->
-        <!--            <field name="name">Chicken Batch Report</field>-->
-        <!--            <field name="model">chicken.batch</field>-->
-        <!--            <field name="report_type">qweb-pdf</field>-->
-        <!--            <field name="report_name">chicken.report_chicken_batch_template</field>-->
-        <!--            <field name="report_file">chicken.report_chicken_batch_template</field>-->
-        <!--            <field name="print_report_name">'Chicken Batch Report - %s' % (object.name)</field>-->
-        <!--            <field name="binding_model_id" ref="model_chicken_batch"/>-->
-        <!--            <field name="binding_type">report</field>-->
-        <!--            <field name="paperformat_id" ref="report.paperformat_euro"/>-->
-        <!--        </record>-->
 
-        <!-- Report Action -->
-<!--        <record id="chicken_batch_report_action" model="ir.actions.report">-->
-<!--            <field name="name">Chicken Batch Report</field>-->
-<!--            <field name="model">chicken.batch</field>-->
-<!--            <field name="report_type">qweb-pdf</field>-->
-<!--            <field name="report_name">chicken.batch.report_chicken_batch_template</field>-->
-<!--            <field name="binding_model_id" ref="model_chicken_batch"/>-->
-<!--        </record>-->
 
     </data>
 </odoo>

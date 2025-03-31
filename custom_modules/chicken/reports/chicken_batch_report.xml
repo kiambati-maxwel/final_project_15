@@ -10,7 +10,6 @@
         <field name="print_report_name">'Chicken Batch Report - %s' % (object.name)</field>
         <field name="binding_model_id" ref="model_chicken_batch"/>
         <field name="binding_type">report</field>
-        <!--        <field name="paperformat_id" ref="report.paperformat_euro"/>-->
     </record>
 
     <template id="chicken_batch_report_template">
@@ -19,8 +18,8 @@
                 <div class="page">
                     <!-- Header -->
                     <div style="text-align: center;">
-                        <h1 style="color: #4CAF50; font-weight: bold;">🐔 Ash Poultry Farm</h1>
-                        <p style="font-size: 14px; color: #555;">Nyeri, P.O BOX 2000-1000</p>
+                        <h1 style="color: #4CAF50; font-weight: bold;">Ash Poultry Farm</h1>
+                        <h3 style="font-size: 14px; color: #555;">Nyeri, P.O BOX 2000-1000</h3>
                     </div>
                     <div class="text-center" style="margin-bottom: 20px; text-align: center;">
 
