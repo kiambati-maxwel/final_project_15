@@ -7,10 +7,10 @@
             <field name="name">chicken.feed.tree</field>
             <field name="model">chicken.feed</field>
             <field name="arch" type="xml">
-                <tree string="Feed Entries" editable="bottom">
+                <tree string="Feed Entries" >
                     <field name="feeding_ref" string="Ref"/>
-                    <field name="product_id" string="Feed Name"/>
                     <field name="quantity" string="Quantity (Kgs)"/>
+                    <field name="product_id" string="Feed Name"/>
                     <field name="batch_id" string="Batch"/>
                     <field name="comment" string="Comment"/>
                     <field name="date" string="Feeding Date"/>
@@ -19,25 +19,35 @@
         </record>
 
 
-        <!-- Form View -->
+        <!-- Enhanced Form View -->
         <record id="chicken_feed_form_view" model="ir.ui.view">
             <field name="name">chicken.feed.form</field>
             <field name="model">chicken.feed</field>
             <field name="arch" type="xml">
                 <form string="Feed Entry">
                     <sheet>
+                        <div class="oe_title" style="text-align:center; margin-bottom:15px;">
+                            <h1 style="color:#4CAF50; font-weight:bold;">
+                                <span class="fa fa-seedling"/> Feeding Entry
+                            </h1>
+                        </div>
                         <group>
-                            <field name="feeding_ref"/>
-                            <field name="product_id"/>
-                            <field name="quantity"/>
-                            <field name="batch_id"/>
-                            <field name="date"/>
-                            <field name="comment"/>
+                            <group>
+                                <field name="feeding_ref" widget="badge" string="🔢 Reference"/>
+                                <field name="product_id" widget="selection" string="🌱 Feed Name"/>
+                                <field name="quantity" widget="float" string="⚖ Quantity (Kgs)"/>
+                            </group>
+                            <group>
+                                <field name="batch_id" widget="selection" string="🛠 Batch"/>
+                                <field name="date" widget="date" string="📅 Feeding Date"/>
+                                <field name="comment" widget="text" string="💬 Comment" placeholder="Enter additional notes..."/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
+
 
         <!-- Search View -->
         <record id="chicken_feed_search_view" model="ir.ui.view">
@@ -63,20 +73,21 @@
             </field>
         </record>
 
-        <!-- Graph View -->
+        <!-- Enhanced Graph View -->
         <record id="chicken_feed_graph_view" model="ir.ui.view">
             <field name="name">chicken.feed.graph</field>
             <field name="model">chicken.feed</field>
             <field name="arch" type="xml">
-                <graph string="Feed Consumption Trends" type="line">
+                <graph string="Feed Consumption Trends" type="bar">
                     <field name="date" type="row" interval="day"/>
                     <field name="quantity" type="measure"/>
                     <field name="product_id" type="col"/>
+                    <field name="batch_id" type="col"/>
                 </graph>
             </field>
         </record>
 
-        <!-- Pivot View -->
+        <!-- Enhanced Pivot View -->
         <record id="chicken_feed_pivot_view" model="ir.ui.view">
             <field name="name">chicken.feed.pivot</field>
             <field name="model">chicken.feed</field>
@@ -86,16 +97,17 @@
                     <field name="product_id" type="row"/>
                     <field name="batch_id" type="col"/>
                     <field name="quantity" type="measure"/>
+                    <field name="feeding_ref" type="col"/>
                 </pivot>
             </field>
         </record>
+
         <!-- actions opening views on models -->
         <record model="ir.actions.act_window" id="chicken_feed_action">
             <field name="name">Feeding</field>
             <field name="res_model">chicken.feed</field>
             <field name="view_mode">tree,form,graph,pivot</field>
         </record>
-
 
         <record model="ir.actions.act_window" id="chicken_feed_graph_action">
             <field name="name">Feeding Graph</field>
@@ -104,7 +116,6 @@
             <field name="view_id" ref="chicken_feed_graph_view"/>
             <field name="context">{"group_by": ["date", "product_id"]}</field>
         </record>
-
         <record model="ir.actions.act_window" id="chicken_feed_pivot_action">
             <field name="name">Feeding Pivot</field>
             <field name="res_model">chicken.feed</field>
