@@ -7,7 +7,7 @@
             <field name="name">Vaccinations</field>
             <field name="model">chicken.vaccination</field>
             <field name="arch" type="xml">
-                <tree string="Vaccination Entries"  >
+                <tree string="Vaccination Entries"  class="o_list_view">
                     <field name="vaccination_ref" string="Ref"/>
                     <field name="product_id" string="Vaccine"/>
                     <field name="quantity" string="Quantity"/>
@@ -36,10 +36,10 @@
                                 <field name="uom_id" string="⚖️ Unit of Measure" readonly="1"/>
                                 <field name="batch_id" placeholder="🐔 Select batch"/>
                             </group>
-                            <group>
+                     <       <group>
                                 <field name="partner_id" placeholder="👤 Assign a responsible person"/>
                                 <field name="scheduled_date" widget="date" string="📅 Scheduled Date"/>
-                                <field name="status" widget="statusbar" statusbar_visible="scheduled,done,canceled"/>
+                                <field name="status"/>
                             </group>
                         </group>
                         <notebook>

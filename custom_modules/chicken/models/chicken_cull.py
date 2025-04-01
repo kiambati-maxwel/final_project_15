@@ -9,7 +9,7 @@ class ChickenCull(models.Model):
                            copy=False, readonly=True)
     cull_date = fields.Date(default=fields.datetime.today())
     cull_reason = fields.Selection([('death', 'Death'), ('weak', 'Weak'),
-                                    ('low_production', 'Low Production')], required=True)
+                                    ('low_production', 'Low Production'), ('sold', 'Sold')], required=True)
     cull_description = fields.Text()
     number = fields.Integer(required=True, default=0)
     responsible_id = fields.Many2one('res.partner')  # Responsible

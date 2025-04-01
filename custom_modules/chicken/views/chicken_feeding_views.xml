@@ -9,12 +9,15 @@
             <field name="arch" type="xml">
                 <tree string="Feed Entries" editable="bottom"  >
                     <field name="feeding_ref" string="Ref"/>
-                    <field name="feed_type" string="Feed Type"/>
-                    <field name="quantity" string="Quantity (Kgs)"/>
-                    <field name="product_id" string="Feed Name"/>
                     <field name="date" string="Feeding Date"/>
-                    <field name="batch_id" string="Batch"/>
+                    <field name="feed_type" string="Feed Type"/>
+
+                    <field name="product_id" string="Feed Name"/>
+                    <field name="quantity" string="Quantity (Kgs)"/>
+
+
                     <field name="comment" string="Comment"/>
+                     <field name="batch_id" string="Batch"/>
 
                 </tree>
             </field>

@@ -30,43 +30,43 @@ class ChickenFeeding(models.Model):
                 vals['feeding_ref'] = self.env['ir.sequence'].next_by_code('feeding.sequence') or _('New')
         return super().create(vals_list)
 
-    ## === ToDo: Automatically create a transfer from Stock
-    @api.model
-    def create(self, vals):
-        record = super(ChickenFeeding, self).create(vals)
-        record['feeding_ref'] = self.env['ir.sequence'].next_by_code('feeding.sequence')
-        creator =  self.env.user.id
-        product_uom = self.env['product.product'].search([('id', '=', str(record.product_id.id))]).uom_id.id
-
-        self.env['stock.picking'].create({
-            'partner_id': creator,
-            'origin': record.feeding_ref,
-            'picking_type_id': 5,
-            'location_id': 8,
-            'location_dest_id' : 44,
-            'note' : record.feeding_ref,
-            'move_lines': [(0, 0, {
-            'name': 'Chicken' + record.feeding_ref,
-            'product_uom_qty': record.quantity,
-            'description_picking': record.feeding_ref,
-            'product_id': record.product_id.id,
-            "product_uom": product_uom,
-            "location_id": 8,
-            "location_dest_id": 44,
-        })]
-        })
-
-        return record
-
-    @api.onchange('quantity')
-    def _onchange_garden(self):
-        record = self.env['stock.move'].search([('description_picking', '=', self.feeding_ref)])
-
-        if record:
-            record = self.env['stock.move'].search([('description_picking', '=', self.feeding_ref)], limit=1)
-            record.write({
-                'product_uom_qty': self.quantity,
-            })
-        else:
-            print('I do not exist you')
+    # ## === ToDo: Automatically create a transfer from Stock
+    # @api.model
+    # def create(self, vals):
+    #     record = super(ChickenFeeding, self).create(vals)
+    #     record['feeding_ref'] = self.env['ir.sequence'].next_by_code('feeding.sequence')
+    #     creator =  self.env.user.id
+    #     product_uom = self.env['product.product'].search([('id', '=', str(record.product_id.id))]).uom_id.id
+    #
+    #     self.env['stock.picking'].create({
+    #         'partner_id': creator,
+    #         'origin': record.feeding_ref,
+    #         'picking_type_id': 5,
+    #         'location_id': 8,
+    #         'location_dest_id' : 44,
+    #         'note' : record.feeding_ref,
+    #         'move_lines': [(0, 0, {
+    #         'name': 'Chicken' + record.feeding_ref,
+    #         'product_uom_qty': record.quantity,
+    #         'description_picking': record.feeding_ref,
+    #         'product_id': record.product_id.id,
+    #         "product_uom": product_uom,
+    #         "location_id": 8,
+    #         "location_dest_id": 44,
+    #     })]
+    #     })
+    #
+    #     return record
+    #
+    # @api.onchange('quantity')
+    # def _onchange_garden(self):
+    #     record = self.env['stock.move'].search([('description_picking', '=', self.feeding_ref)])
+    #
+    #     if record:
+    #         record = self.env['stock.move'].search([('description_picking', '=', self.feeding_ref)], limit=1)
+    #         record.write({
+    #             'product_uom_qty': self.quantity,
+    #         })
+    #     else:
+    #         print('I do not exist you')
 

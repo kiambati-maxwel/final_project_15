@@ -7,7 +7,7 @@
             <field name="name">Culls</field>
             <field name="model">chicken.cull</field>
             <field name="arch" type="xml">
-                <tree string="Chicken Culls" editable="bottom">
+                <tree string="Chicken Culls" class="o_list_view">
                     <field name="cull_ref" string="Cull Reference"/>
                     <!--   <field name="transfer_id" string="Transfer Ref"/>-->
                     <field name="cull_date" string="Date"/>

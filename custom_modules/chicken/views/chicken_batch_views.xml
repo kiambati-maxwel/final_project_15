@@ -134,7 +134,7 @@
             <field name="name">Chicken Batchs</field>
             <field name="model">chicken.batch</field>
             <field name="arch" type="xml">
-                <tree string="Chicken Batchs">
+                <tree string="Chicken Batchs" class="o_list_view">
                     <field name="name" string="Batch Number"/>
                     <field name="date_in" string="Entry Date"/>
                     <field name="stock" string="Current Stock"/>
