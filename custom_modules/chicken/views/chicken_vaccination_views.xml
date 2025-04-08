@@ -36,7 +36,7 @@
                                 <field name="uom_id" string="⚖️ Unit of Measure" readonly="1"/>
                                 <field name="batch_id" placeholder="🐔 Select batch"/>
                             </group>
-                     <       <group>
+                         <group>
                                 <field name="partner_id" placeholder="👤 Assign a responsible person"/>
                                 <field name="scheduled_date" widget="date" string="📅 Scheduled Date"/>
                                 <field name="status"/>

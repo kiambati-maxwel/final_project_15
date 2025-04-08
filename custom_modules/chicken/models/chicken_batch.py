@@ -107,7 +107,7 @@ class ChickenBatch(models.Model):
                 record.total_eggs = 0
 
 
-    # ========== todo Improve The following =========================================
+    # ========== =========================================
     @api.depends('eggs_ids.quantity', 'laying_start_date')
     def _compute_average_eggs_daily(self):
         for record in self:
